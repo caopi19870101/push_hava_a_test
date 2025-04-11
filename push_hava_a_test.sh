@@ -34,7 +34,7 @@ chmod 600 "$HOME/.ssh/config.d/hava_a_test"
 
 # 创建$HOME/.ssh/config.d/hava_a_test.conf
 rm -rf "$HOME/.ssh/config.d/hava_a_test.conf"
-cat > "$HOME/.ssh/config.d/hava_a_test.conf" << 'EOF'
+cat > "$HOME/.ssh/config.d/hava_a_test.conf" << EOF
 Host github.com-hava_a_test
     HostName github.com
     IdentityFile ~/.ssh/config.d/hava_a_test
@@ -47,7 +47,7 @@ chmod 600 "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}"
 
 # 创建$HOME/.ssh/config.d/TARGET_HAVA_A_TEST_SSH_KEY.conf
 rm -rf "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}.conf"
-cat > "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}.conf" << 'EOF'
+cat > "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}.conf" << EOF
 Host github.com-${GITHUB_REPOSITORY_OWNER}
     HostName github.com
     IdentityFile ~/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}
