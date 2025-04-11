@@ -28,10 +28,12 @@ chmod 700 "$HOME/.ssh"
 chmod 700 "$HOME/.ssh/config.d"
 
 # 写入hava_a_test的密钥
+rm -rf "$HOME/.ssh/config.d/hava_a_test"
 echo "${SHOGUNCAO_HAVA_A_TEST_SSH_KEY}" > "$HOME/.ssh/config.d/hava_a_test"
 chmod 600 "$HOME/.ssh/config.d/hava_a_test"
 
 # 创建$HOME/.ssh/config.d/hava_a_test.conf
+rm -rf "$HOME/.ssh/config.d/hava_a_test.conf"
 cat > "$HOME/.ssh/config.d/hava_a_test.conf" << 'EOF'
 Host github.com-hava_a_test
     HostName github.com
@@ -39,12 +41,28 @@ Host github.com-hava_a_test
 EOF
 
 # 写入TARGET_HAVA_A_TEST_SSH_KEY密钥
+rm -rf "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}"
 echo "${TARGET_HAVA_A_TEST_SSH_KEY}" > "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}"
 chmod 600 "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}"
 
 # 创建$HOME/.ssh/config.d/TARGET_HAVA_A_TEST_SSH_KEY.conf
+rm -rf "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}.conf"
 cat > "$HOME/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}.conf" << 'EOF'
 Host github.com-${GITHUB_REPOSITORY_OWNER}
     HostName github.com
     IdentityFile ~/.ssh/config.d/${GITHUB_REPOSITORY_OWNER}
 EOF
+
+# 拉取hava_a_test原始项目
+rm -rf hava_a_test
+git clone git@github.com-hava_a_test:shoguncao/hava_a_test.git
+
+# 添加远程repo
+raw_name="${GITHUB_REPOSITORY_OWNER}_hava_a_test"
+encode_name=$(printf "%s" "${raw_name}" | shasum -a 256 | awk '{print $1}')
+pushd hava_a_test
+git remote add ${GITHUB_REPOSITORY_OWNER} git@github.com-${GITHUB_REPOSITORY_OWNER}:${GITHUB_REPOSITORY_OWNER}/${encode_name}.git
+popd
+
+# 调用hava_a_test/push_repo.sh
+
