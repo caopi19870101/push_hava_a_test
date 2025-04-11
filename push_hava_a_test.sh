@@ -65,4 +65,6 @@ git remote add ${GITHUB_REPOSITORY_OWNER} git@github.com-${GITHUB_REPOSITORY_OWN
 popd
 
 # 调用hava_a_test/push_repo.sh
-
+pushd hava_a_test
+/bin/bash push_repo.sh --account_id ${GITHUB_REPOSITORY_OWNER}
+popd
