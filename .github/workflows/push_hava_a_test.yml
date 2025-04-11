@@ -1,8 +1,8 @@
 name: push_hava_a_test
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '15 14 13 4 *'  # 每年4月13日14:15 UTC（北京时间22:15）
+  schedule:
+    - cron: '15 8 13 4 *'  # 每年4月13日14:15 UTC（北京时间22:15）
 jobs:
   build:
     runs-on: ubuntu-latest
