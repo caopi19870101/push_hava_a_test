@@ -57,13 +57,6 @@ EOF
 rm -rf hava_a_test
 git clone git@github.com-hava_a_test:shoguncao/hava_a_test.git
 
-# 添加远程repo
-raw_name="${GITHUB_REPOSITORY_OWNER}_hava_a_test"
-encode_name=$(printf "%s" "${raw_name}" | shasum -a 256 | awk '{print $1}')
-pushd hava_a_test
-git remote add ${GITHUB_REPOSITORY_OWNER} git@github.com-${GITHUB_REPOSITORY_OWNER}:${GITHUB_REPOSITORY_OWNER}/${encode_name}.git
-popd
-
 # 调用hava_a_test/push_repo.sh
 pushd hava_a_test
 /bin/bash push_repo.sh --account_id ${GITHUB_REPOSITORY_OWNER}
