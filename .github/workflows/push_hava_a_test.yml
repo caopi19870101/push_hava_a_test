@@ -15,13 +15,4 @@ jobs:
           TARGET_HAVA_A_TEST_SSH_KEY: ${{ secrets.TARGET_HAVA_A_TEST_SSH_KEY }}
         run: |
           /bin/bash push_hava_a_test.sh
-          echo "~/.ssh/config.d/hava_a_test.conf"
-          cat ~/.ssh/config.d/hava_a_test.conf
-          echo "~/.ssh/config.d/shoguncao.conf"
-          cat ~/.ssh/config.d/shoguncao.conf
-          echo "ls -al"
-          ls -al
-          pushd hava_a_test
-          git remote -vv
-          popd
         
